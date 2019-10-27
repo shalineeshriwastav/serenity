@@ -1,4 +1,5 @@
 #include <Kernel/KParams.h>
+#include <iostream>
 
 static KParams* s_the;
 
@@ -10,7 +11,8 @@ KParams& KParams::the()
 KParams::KParams(const String& cmdline)
     : m_cmdline(cmdline)
 {
-    s_the = this;
+    
+        s_the = this;
 
     for (auto str : m_cmdline.split(' ')) {
         if (str == "") {
@@ -19,10 +21,13 @@ KParams::KParams(const String& cmdline)
 
         auto pair = str.split_limit('=', 2);
 
-        if (pair.size() == 1) {
-            m_params.set(pair[0], "");
-        } else {
-            m_params.set(pair[0], pair[1]);
+        if (pair.size() == 1) {  
+            
+                 m_params.set(pair[0], ""); 
+            
+        } else { 
+            
+                  m_params.set(pair[0], pair[1]);
         }
     }
 }
